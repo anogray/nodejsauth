@@ -36,6 +36,7 @@ router.post("/", async(req,res)=>{
     //hashing the password
 
     else {
+        console.log("see otp session",req.session)
         let {otp} = req.session
         console.log("reqbdy",req.body)
         const {otpValue} = req.body;
