@@ -40,7 +40,7 @@ app.use(session({
 }));
 
 app.get("/", (req,res)=>{
-  // res.send("Data came from server");
+   res.send("Data came from server");
   //express deprecated res.send(status, body): Use res.status(status).send(body) instead
   //res.status(200).send(req.headers);
 })
