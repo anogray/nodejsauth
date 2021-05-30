@@ -8,7 +8,7 @@ router.post("/", async(req,res)=>{
     
    try 
     {
-    console.log("main request data",req.body)
+    console.log("main request data",req.body,req.session)
     
     if(!req.session.otp){
     let {email, password, verifyPassword} = req.body;
