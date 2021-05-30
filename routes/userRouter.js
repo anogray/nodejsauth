@@ -8,7 +8,7 @@ router.post("/", async(req,res)=>{
     
    try 
     {
-    console.log("request data",req.body)
+    console.log("main request data",req.body)
     
     if(!req.session.otp){
     let {email, password, verifyPassword} = req.body;
@@ -38,16 +38,16 @@ router.post("/", async(req,res)=>{
     else {
         console.log("see otp session",req.session)
         let {otp} = req.session
-        console.log("reqbdy",req.body)
-        const {otpValue} = req.body;
+        console.log("otp reqbody",req.body)
+        const {otpClient} = req.body;
         const email = req.session.email
         const password = req.session.password
         
         if(typeof otp === 'undefined'){
             res.status(400).send("reload");
         }
-        console.log("check",otpValue,otp)
-        if(otp===otpValue){
+        console.log("check",{otpClient},{otp})
+        if(otp===otpClient){
 
             {const salt = await bcrypt.genSalt();
             const passwordHash = await bcrypt.hash(password, salt);
