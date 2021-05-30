@@ -4,7 +4,7 @@ var nodemailer = require('nodemailer');
 
 // router.post("/", (req,res)=>{
 const mailer = (req,res)=> {
-    console.log("inside mailer")
+    console.log("inside mailer",req.session)
         
     const {email, password} = req.body;
         const transporter = nodemailer.createTransport({
@@ -30,6 +30,9 @@ const mailer = (req,res)=> {
             req.session.email = email
             req.session.password = password
             req.session.otp = OTP;
+
+            console.log("mailing mailer",req.session)
+
 
             transporter.sendMail(mailData, function (err, info) {
                 if(err)
