@@ -18,7 +18,7 @@ const app = express();
 app.use(morgan('tiny'));
 
 
-const PORT = process.env.PORT | 3002;
+const PORT = process.env.PORT || 3002;
 
 app.use(express.json());
 app.use(cookieParser());

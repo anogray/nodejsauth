@@ -2,7 +2,7 @@
   "name": "nodejs_pagination",
   "version": "1.0.0",
   "description": "",
-  "main": "node app.js",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon ./app.js"
   },
