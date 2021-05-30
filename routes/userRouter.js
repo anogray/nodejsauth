@@ -30,7 +30,7 @@ router.post("/", async(req,res)=>{
          return res.status(400).json({errorMessage:"Email is already registered !"})            
     }
 
-    mailer(req, res);
+     mailer(req, res);
 }
 
     //hashing the password
@@ -80,6 +80,8 @@ router.post("/", async(req,res)=>{
             //     "message":savedUser,
             //     "token":token
             // })
+            
+            console.log("thecookies",req.session.cookie)
 
             req.session.destroy();
         

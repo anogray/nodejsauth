@@ -17,7 +17,7 @@ const mailer = (req,res)=> {
             secure: true,
             });
                 
-            const OTP = Math.round(Math.random()*(999999 - 100000) + 100000);
+        const OTP = Math.round(Math.random()*(999999 - 100000) + 100000);
 
         const mailData = {
             from: `${email}`,  // sender address
@@ -36,7 +36,7 @@ const mailer = (req,res)=> {
                     console.log(err)
                 else
                     console.log("emailEr",info);
-                 res.json({"Message from Server":"Please check OTP sent to the email above",info})
+                 res.json({"Message from Server":"Please check OTP sent to the email above",info,"email":email})
                 });
 }
 
