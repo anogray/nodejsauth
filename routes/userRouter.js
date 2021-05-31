@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const mailer = require("./mailer")
 
 router.post("/", async(req,res)=>{
-    console.log("alldetails", typeof(req.cookies), req.cookies.details, !req.cookies.details)
+    // console.log("alldetails", typeof(req.cookies), req.cookies.details, !req.cookies.details)
         
     // let {checkotpCookie} = req.cookies.details
     // console.log({checkotpCookie})
