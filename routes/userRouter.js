@@ -102,7 +102,7 @@ router.post("/", async(req,res)=>{
             
         
             return res.cookie("token", token, {
-                httpOnly:true
+                httpOnly:true, sameSite:"none"
             }).send();
         }
     }
