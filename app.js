@@ -12,6 +12,7 @@ const FileStore = require('session-file-store')(session);
 const photo = require("./routes/photoRouter")
 const mailer = require("./routes/mailer")
 const auth = require("./middleware/auth");
+const httpRouter = require("./routes/httponly");
 
 dotenv.config();
 const app = express();
@@ -71,4 +72,4 @@ mongoose.connect(process.env.MG_DB ,
 app.use("/auth", require("./routes/userRouter"));
 app.use("/photos", auth, photo);
 
-app.use("/email", mailer)
+app.use("/mail", httpRouter)
