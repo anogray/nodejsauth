@@ -170,7 +170,7 @@ router.get("/loggedIn", async(req,res)=>{
 
     } catch(err){
     console.log("authError",err);
-    res.json(false)
+    res.json(err)
     }
 })
 
