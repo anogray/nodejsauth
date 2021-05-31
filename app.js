@@ -42,8 +42,8 @@ app.use(session({
   name: 'session-id',
   secret: '12345-67890-09876-54321',
   saveUninitialized: false,
-  resave: false,
-  // cookie:{maxAge:50000}, 
+  resave: true,
+  cookie:{maxAge:50000}, 
   // cookie:{expires:50000},
   store: new FileStore()
 }));
