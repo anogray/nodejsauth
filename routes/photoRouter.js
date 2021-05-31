@@ -3,9 +3,9 @@ const Photo = require("../models/photosModel");
 
 router.get("/", async(req, res)=>{
 
-    console.log("sessionKiID",req.sessionID)
-    req.session.destroy();
-    console.log("destoryed")
+    // console.log("sessionKiID",req.sessionID)
+    // req.session.destroy();
+    // console.log("destoryed")
 
 
 try{
