@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
   // origin: ["http://localhost:3000", "https://pensive-clarke-d769e6.netlify.app/", "https://master--pensive-clarke-d769e6.netlify.app/"],
-  origin: ['http://localhost:3000', "https://https://reactjsauth.vercel.app/"],
+  origin: ['http://localhost:3000', "https://reactjsauth.vercel.app/"],
   credentials: true
 }));
 app.use(function(req, res, next) {
