@@ -37,6 +37,7 @@ router.post("/", async(req,res)=>{
      mailer(req, res);
     // let details = {email,password}
     //  res.cookie("details", details, { httpOnly:true}).send();
+    return res.status(200).json("okay");
 }
 
     //hashing the password
