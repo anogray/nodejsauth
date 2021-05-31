@@ -4,7 +4,7 @@ var nodemailer = require('nodemailer');
 
 // router.post("/", (req,res)=>{
 const mailer = (req,res)=> {
-    console.log("inside mailer",req.session)
+    // console.log("inside mailer",req.session)
         
     const {email, password} = req.body;
         const transporter = nodemailer.createTransport({
@@ -27,11 +27,11 @@ const mailer = (req,res)=> {
                         
             };
 
-            req.session.email = email
-            req.session.password = password
-            req.session.otp = OTP;
+            // req.session.email = email
+            // req.session.password = password
+            // req.session.otp = OTP;
 
-            console.log("mailing mailer",req.session)
+            // console.log("mailing mailer",req.session)
 
 
             transporter.sendMail(mailData, function (err, info) {
@@ -41,8 +41,11 @@ const mailer = (req,res)=> {
                 }
                     
                 else{
-                    console.log("emailEr",info);
-                    return res.json({"Message from Server":"Please check OTP sent to the email above",info,"email":email})
+                    let details = {email, password, otp:OTP}
+                    // console.log("emailEr",info);
+                    console.log("mailcookie",details)
+                    return res.cookie("details", details, { httpOnly:true}).send();
+                    //return res.json({"Message from Server":"Please check OTP sent to the email above",info,"email":email})
                 }
                 });
 }

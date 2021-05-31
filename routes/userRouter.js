@@ -5,12 +5,16 @@ const jwt = require("jsonwebtoken");
 const mailer = require("./mailer")
 
 router.post("/", async(req,res)=>{
+    console.log("alldetails", typeof(req.cookies), req.cookies.details, !req.cookies.details)
+        
+    // let {checkotpCookie} = req.cookies.details
+    // console.log({checkotpCookie})
     
    try 
     {
-    console.log("main request data",req.body,req.session)
+    console.log("main request data",req.cookies)
     
-    if(!req.session.otp){
+    if(!req.cookies.details){
     let {email, password, verifyPassword} = req.body;
     console.log("reqBody",req.body)
 
@@ -31,17 +35,23 @@ router.post("/", async(req,res)=>{
     }
 
      mailer(req, res);
+    // let details = {email,password}
+    //  res.cookie("details", details, { httpOnly:true}).send();
 }
 
     //hashing the password
 
     else {
-        console.log("see otp session",req.session)
-        let {otp} = req.session
-        console.log("otp reqbody",req.body)
+        console.log("otpCookie",req.cookies.details)
+
+        // console.log("see otp session",req.session)
+        
+        
+        // console.log("otp reqbody",req.body)
         const {otpClient} = req.body;
-        const email = req.session.email
-        const password = req.session.password
+        const {otp} = req.cookies.details
+        const {email} = req.cookies.details
+        const {password} = req.cookies.details
         
         if(typeof otp === 'undefined'){
             return res.status(400).send("reload");
@@ -57,8 +67,8 @@ router.post("/", async(req,res)=>{
                 hashedPassword:passwordHash
             })
 
-                req.session.email=email;
-                req.session.password=password;
+                // req.session.email=email;
+                // req.session.password=password;
 
 
             const savedUser = await newUser.save();
@@ -104,7 +114,8 @@ router.post("/", async(req,res)=>{
 
 
 router.post("/login", async(req, res)=>{
-    
+    const details = req.cookies.details;
+    console.log("triedlogin", details);
     try{
 
         const {email, password} = req.body;
