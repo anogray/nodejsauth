@@ -27,6 +27,13 @@ app.use(cookieParser());
 //   //origin: ["http://localhost:3000, https://pensive-clarke-d769e6.netlify.app"],
 //   credentials: true
 // }));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
 app.use(cors());
 
 app.listen(PORT, ()=> console.log(`Server is running up at ${PORT}`));
