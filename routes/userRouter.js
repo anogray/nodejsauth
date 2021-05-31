@@ -194,7 +194,8 @@ router.get("/loggedIn", async(req,res)=>{
 router.get("/logout",(req,res)=>{
     return res.cookie("token","", {
         httpOnly:true,
-        expires: new Date(0)
+        expires: new Date(0),
+        sameSite:"none", secure:"auto"
     }).send();
 
 })
