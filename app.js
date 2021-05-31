@@ -27,6 +27,7 @@ app.use(cors({
   origin: ['http://localhost:3000', "https://reactjsauth.vercel.app/"],
   credentials: true
 }));
+
 app.use(function(req, res, next) {
   // res.header("Access-Control-Allow-Origin", '*');
   res.header("Access-Control-Allow-Credentials", true);
