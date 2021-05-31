@@ -11,10 +11,11 @@ router.get("/", async(req, res)=>{
 try{
         const photosArr = await Photo.find().limit(10);
         console.log(photosArr);
-        res.status(200).send(photosArr);
+        return res.status(200).send(photosArr);
     
 } catch(err){
     console.log("photosError", err);
+    return res.status(500).send();
 }
 
 

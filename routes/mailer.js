@@ -35,11 +35,15 @@ const mailer = (req,res)=> {
 
 
             transporter.sendMail(mailData, function (err, info) {
-                if(err)
+                if(err){
                     console.log(err)
-                else
+                    return res.status(500).json({"Mail":"Error"})
+                }
+                    
+                else{
                     console.log("emailEr",info);
-                 res.json({"Message from Server":"Please check OTP sent to the email above",info,"email":email})
+                    return res.json({"Message from Server":"Please check OTP sent to the email above",info,"email":email})
+                }
                 });
 }
 

@@ -44,7 +44,7 @@ router.post("/", async(req,res)=>{
         const password = req.session.password
         
         if(typeof otp === 'undefined'){
-            res.status(400).send("reload");
+            return res.status(400).send("reload");
         }
         console.log("check",{otpClient},{otp})
         if(otp===otpClient){
@@ -86,18 +86,18 @@ router.post("/", async(req,res)=>{
 
             req.session.destroy();
         
-            res.cookie("token", token, {
+            return res.cookie("token", token, {
                 httpOnly:true
             }).send();
         }
     }
     else{
-        res.status(400).send("Invalid Otp");
+        return res.status(400).send("Invalid Otp");
     }
 }
     } catch(err){
     console.error(err);
-    res.status(500).send();
+    return res.status(500).send();
   }
 })
 
@@ -122,7 +122,7 @@ router.post("/login", async(req, res)=>{
     if(!checkUser){
         console.log("TRue checkUser",checkUser)
 
-          res.status(400).json({errorMessage:"Email is not registered !"})            
+        return res.status(400).json({errorMessage:"Email is not registered !"})            
     }
 
     const checkPassword =await  bcrypt.compare(password, checkUser.hashedPassword);
@@ -150,7 +150,7 @@ router.post("/login", async(req, res)=>{
         
     } catch(err){
         console.log(err);
-        res.status(500).send("nono");        
+        return res.status(500).send("nono");        
     }
 })
 
@@ -166,17 +166,17 @@ router.get("/loggedIn", async(req,res)=>{
         const verifiedToken = jwt.verify(token, process.env.JWT_SECRET);
         console.log("verifiedToken",verifiedToken);
         
-        res.send(true);
+        return res.send(true);
 
     } catch(err){
     console.log("authError",err);
-    res.json(err)
+    return res.json(err)
     }
 })
 
 
 router.get("/logout",(req,res)=>{
-    res.cookie("token","", {
+    return res.cookie("token","", {
         httpOnly:true,
         expires: new Date(0)
     }).send();
