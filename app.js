@@ -22,11 +22,12 @@ const PORT = process.env.PORT || 3002;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  // origin: ["http://localhost:3000", "https://pensive-clarke-d769e6.netlify.app/", "https://master--pensive-clarke-d769e6.netlify.app/"],
-  //origin: ["http://localhost:3000, https://pensive-clarke-d769e6.netlify.app"],
-  credentials: true
-}));
+// app.use(cors({
+//   // origin: ["http://localhost:3000", "https://pensive-clarke-d769e6.netlify.app/", "https://master--pensive-clarke-d769e6.netlify.app/"],
+//   //origin: ["http://localhost:3000, https://pensive-clarke-d769e6.netlify.app"],
+//   credentials: true
+// }));
+app.use(cors());
 
 app.listen(PORT, ()=> console.log(`Server is running up at ${PORT}`));
 
