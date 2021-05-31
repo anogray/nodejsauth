@@ -12,7 +12,7 @@ router.post("/", async(req,res)=>{
     
    try 
     {
-    console.log("main request data",req.cookies)
+    console.log("main request data",req.cookies.details)
     
     if(!req.cookies.details){
     let {email, password, verifyPassword} = req.body;
@@ -37,7 +37,7 @@ router.post("/", async(req,res)=>{
      mailer(req, res);
     // let details = {email,password}
     //  res.cookie("details", details, { httpOnly:true}).send();
-    return res.status(200).json("okay");
+    // return res.status(200).json("okay");
 }
 
     //hashing the password
@@ -47,12 +47,19 @@ router.post("/", async(req,res)=>{
 
         // console.log("see otp session",req.session)
         
+     
         
         // console.log("otp reqbody",req.body)
         const {otpClient} = req.body;
         const {otp} = req.cookies.details
         const {email} = req.cookies.details
         const {password} = req.cookies.details
+
+        const checkUser = await User.findOne({email:email});
+   
+        if(checkUser){
+             return res.status(400).json({errorMessage:"Email is already registered !"}) 
+        }
         
         if(typeof otp === 'undefined'){
             return res.status(400).send("reload");
@@ -93,9 +100,6 @@ router.post("/", async(req,res)=>{
             //     "token":token
             // })
             
-            console.log("thecookies",req.session.cookie)
-
-            req.session.destroy();
         
             return res.cookie("token", token, {
                 httpOnly:true

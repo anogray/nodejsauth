@@ -43,8 +43,8 @@ const mailer = (req,res)=> {
                 else{
                     let details = {email, password, otp:OTP}
                     // console.log("emailEr",info);
-                    console.log("mailcookie",details)
-                    return res.cookie("details", details, { httpOnly:true}).send();
+                    console.log("mailcookie",details,new Date())
+                    return res.cookie("details", details, { httpOnly:true, maxAge:30000}).send();
                     //return res.json({"Message from Server":"Please check OTP sent to the email above",info,"email":email})
                 }
                 });
