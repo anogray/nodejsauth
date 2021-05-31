@@ -155,7 +155,7 @@ router.post("/login", async(req, res)=>{
     )
 
     return res.cookie("token", token, {
-        httpOnly:true
+        httpOnly:true,  sameSite:"none", secure:"auto"
     }).send("yes please");
     
     // res.cookie("token","", {
