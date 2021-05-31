@@ -27,13 +27,13 @@ app.use(cors({
   origin: ['http://localhost:3000'],
   credentials: true
 }));
-// app.use(function(req, res, next) {
-//   // res.header("Access-Control-Allow-Origin", '*');
-//   res.header("Access-Control-Allow-Credentials", true);
-//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-//   res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-//   next();
-// });
+app.use(function(req, res, next) {
+  // res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
 // app.use(cors());
 
 app.listen(PORT, ()=> console.log(`Server is running up at ${PORT}`));
@@ -49,7 +49,7 @@ app.use(session({
 }));
 
 app.get("/", (req,res)=>{
-   res.send("Data came from server");
+   return res.send("Data came from server");
   //express deprecated res.send(status, body): Use res.status(status).send(body) instead
   //res.status(200).send(req.headers);
 })
