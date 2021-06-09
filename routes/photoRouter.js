@@ -8,10 +8,11 @@ router.get("/", async(req, res)=>{
     // console.log("destoryed")
 
 
-try{
-        const photosArr = await Photo.find().limit(10);
+try{    const totalPics = await Photo.count({});
+        console.log("totalPics",totalPics);
+        const photosArr = await Photo.find();
         console.log(photosArr);
-        return res.status(200).send(photosArr);
+        return res.status(200).json({totalPics:totalPics, photosArr:photosArr});
     
 } catch(err){
     console.log("photosError", err);
